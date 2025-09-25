@@ -583,6 +583,8 @@ require('lazy').setup({
           --  the definition of its *type*, not where it was *defined*.
           map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
 
+          map('gre', vim.diagnostic.open_float, 'Open Diagnostic at Point')
+
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
           ---@param method vim.lsp.protocol.Method
@@ -685,11 +687,12 @@ require('lazy').setup({
         clangd = {
           settings = {
             filetypes = { 'c', 'cpp', 'cc', 'cxx', 'h', 'hpp', 'hh', 'hxx' },
+            cmd = { 'clangd', '--background-index', '--clang-tidy' },
           },
         },
         gopls = {},
-        --pyright = {},
-        ruff = {},
+        pyright = {},
+        --ruff = {},
         rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -767,6 +770,14 @@ require('lazy').setup({
       { '<leader>vc', '<cmd>VenvSelectCached<cr>' },
     },
   },
+  {
+    'ojroques/nvim-bufdel',
+    keys = {
+      { '<leader>bd', '<cmd>BufDel<cr>' },
+      { '<leader>bD', '<cmd>BufDelOthers<cr>' },
+    },
+  },
+
   { -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
@@ -801,7 +812,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'black' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -840,7 +851,7 @@ require('lazy').setup({
         },
         opts = {},
       },
-      'folke/lazydev.nvim',
+      --'folke/lazydev.nvim',
     },
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
@@ -886,10 +897,10 @@ require('lazy').setup({
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
-        providers = {
-          lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
-        },
+        default = { 'lsp', 'path', 'snippets' },
+        --providers = {
+        --  lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+        --},
       },
 
       snippets = { preset = 'luasnip' },
@@ -997,6 +1008,16 @@ require('lazy').setup({
     --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  },
+  {
+    'jeangiraldoo/codedocs.nvim',
+    -- Remove the 'dependencies' section if you don't plan on using nvim-treesitter
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+    keys = {
+      { '<leader>gk', '<cmd>Codedocs<cr>' },
+    },
   },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
