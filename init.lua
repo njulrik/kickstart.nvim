@@ -923,8 +923,7 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    --'folke/tokyonight.nvim',
-    'lunarvim/horizon.nvim',
+    'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
       ---@diagnostic disable-next-line: missing-fields
@@ -932,12 +931,43 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      --vim.opt.background = 'dark'
+      vim.opt.background = 'dark'
       --vim.cmd.colorscheme 'tokyonight-night'
       vim.cmd.colorscheme 'horizon'
     end,
   },
+  {
+    'lunarvim/horizon.nvim',
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
 
+      -- Load the colorscheme here.
+      vim.cmd.colorscheme 'horizon'
+    end,
+  },
+  { 'typicode/bg.nvim', lazy = false },
+  {
+    'rebelot/kanagawa.nvim',
+  },
+  {
+    'dgox16/oldworld.nvim',
+    lazy = false,
+    priority = 1000,
+  },
+  {
+    'nyoom-engineering/oxocarbon.nvim',
+    -- Add in any other configuration;
+    --   event = foo,
+    --   config = bar
+    --   end,
+  },
+  { 'Everblush/nvim', name = 'everblush', dependencies = { 'lukas-reineke/indent-blankline.nvim' } },
+  {
+    'zootedb0t/citruszest.nvim',
+    lazy = false,
+    priority = 1000,
+  },
+  { 'dasupradyumna/midnight.nvim', lazy = false, priority = 1000 },
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
