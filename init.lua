@@ -933,7 +933,7 @@ require('lazy').setup({
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.opt.background = 'dark'
       --vim.cmd.colorscheme 'tokyonight-night'
-      vim.cmd.colorscheme 'horizon'
+      --vim.cmd.colorscheme 'horizon'
     end,
   },
   {
@@ -942,7 +942,6 @@ require('lazy').setup({
       ---@diagnostic disable-next-line: missing-fields
 
       -- Load the colorscheme here.
-      vim.cmd.colorscheme 'horizon'
     end,
   },
   { 'typicode/bg.nvim', lazy = false },
@@ -953,6 +952,9 @@ require('lazy').setup({
     'dgox16/oldworld.nvim',
     lazy = false,
     priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'oldworld'
+    end,
   },
   {
     'nyoom-engineering/oxocarbon.nvim',
